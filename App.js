@@ -1,7 +1,23 @@
+import AppLoading from 'expo-app-loading';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
+
+  const [fontLoad, setFontLoad] = useState(false);
+
+  if (!fontLoad) {
+    return (
+      <AppLoading
+        startAsync={fontLoading}
+        onFinish={() => setFontLoad(true)}
+        onError={(test) => {
+          throw new Error(Text);
+        }}
+      />
+    );
+  }
+
   return (
     <View style={styles.container}>
       <Text>Open up App.js to start working on your app!</Text>
