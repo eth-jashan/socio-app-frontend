@@ -28,9 +28,6 @@ const Startup = (props) => {
         <Text style={{ ...StartupStyles.heading, color: "white" }}>
           {props.data.text}
         </Text>
-        <View style={StartupStyles.button}>
-          <Text style={StartupStyles.buttonText}>Get Started</Text>
-        </View>
       </View>
     );
 };

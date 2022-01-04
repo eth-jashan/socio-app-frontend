@@ -12,6 +12,7 @@ import { Button } from "react-native-paper";
 
 import Startup from "../../Components/AuthStack/Startup";
 import constants from "../../Constants/constants";
+import StartupStyles from '../../Components/AuthStack/Styles/StartupStyles'
 
 const{width,height} = Dimensions.get('window')
 
@@ -28,17 +29,11 @@ const startupData = [
     index: 2,
     lotiSource: "burn.json",
     text: "And if you don't have one. Why not let others help you.",
-    backgroundColor: "black",
-    textColor: "white",
-    buttonColor: "#f05c5c",
   },
   {
     index: 3,
     lotiSource: "start.json",
     text: "Let us help you by tracking your progress",
-    backgroundColor: "#2b3187",
-    textColor: "white",
-    buttonColor: "#f05c5c",
   },
 ];
 
@@ -79,6 +74,12 @@ const StartupScreen = () => {
         keyExtractor={(item) => item.index}
         showsHorizontalScrollIndicator={false}
       />
+      <View style={{marginBottom:40,justifyContent:'center'}}>
+        <View style={StartupStyles.button}>
+          <Text style={StartupStyles.buttonText}>Get Started</Text>
+        </View>
+      </View>
+
       <View
         style={{
           alignItems: "center",
@@ -89,7 +90,7 @@ const StartupScreen = () => {
       >
         <View
           style={{
-            backgroundColor: index ===  0 ? "orange" : "white",
+            backgroundColor: index === 0 ? "orange" : "white",
             borderRadius: 100,
             height: 5,
             width: 5,
