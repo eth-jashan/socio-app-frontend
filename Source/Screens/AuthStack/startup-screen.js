@@ -8,11 +8,11 @@ import {
   StatusBar,
   Dimensions,
 } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import { Button } from "react-native-paper";
 
 import Startup from "../../Component/AuthStack/startup";
 import constants from "../../Constants/styles";
-import StartupStyles from '../../Styles/AuthStack/StartupStyles'
 
 const{width,height} = Dimensions.get('window')
 
@@ -37,7 +37,7 @@ const startupData = [
   },
 ];
 
-const StartupScreen = () => {
+const StartupScreen = (props) => {
 
   
 
@@ -74,11 +74,13 @@ const StartupScreen = () => {
         keyExtractor={(item) => item.index}
         showsHorizontalScrollIndicator={false}
       />
-      <View style={{marginBottom:40,justifyContent:'center'}}>
-        <View style={StartupStyles.button}>
-          <Text style={StartupStyles.buttonText}>Get Started</Text>
+      <TouchableOpacity onPress={() => { props.navigation.navigate("homeFlow");}}>
+        <View style={{ marginBottom: 40, justifyContent: "center" }}>
+          <View style={styles.button}>
+            <Text style={styles.buttonText}>Get Started</Text>
+          </View>
         </View>
-      </View>
+      </TouchableOpacity>
 
       <View
         style={{
@@ -120,5 +122,35 @@ const StartupScreen = () => {
   );
 };
 
+const styles = StyleSheet.create({
+  container: {
+    width: width,
+    backgroundColor: constants.colors.startup,
+  },
+  heading: {
+    fontSize: constants.textSize.heading,
+    marginVertical: 15,
+    paddingHorizontal: 15,
+    fontFamily: "bold",
+  },
+  button: {
+    borderRadius: 50,
+    backgroundColor: "#f05c5c",
+    padding: 10,
+    alignItems: "center",
+    width: width * 0.4,
+    justifyContent: "center",
+    marginLeft: 15,
+  },
+  buttonText: {
+    color: "white",
+    fontSize: constants.textSize.button,
+    fontFamily: "semibold",
+  },
+  lotiContainer: {
+    width: Dimensions.get("window").width,
+    height: Dimensions.get("window").height * 0.65,
+  },
+});
 
 export default StartupScreen;
