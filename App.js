@@ -6,8 +6,12 @@ import React,{useState} from 'react'
 
 
 //screens
-import StartupScreen from "./Source/Screens/AuthStack/StartupScreen";
+import StartupScreen from "./Source/Screens/AuthStack/startup-screen";
 import { fontLoading } from './Config/fonts';
+import { Provider } from 'react-redux';
+import { persistor, store } from './Source/Redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
+import AppNavigator from './Source/NavigationStack';
 
 
 export default function App() {
@@ -26,7 +30,13 @@ export default function App() {
     );
   }
 
-  return <StartupScreen />;
+  return (
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor} >
+        <AppNavigator />
+      </PersistGate>
+    </Provider>
+  );
 }
 
 const styles = StyleSheet.create({

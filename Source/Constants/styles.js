@@ -1,4 +1,4 @@
-const constants = {
+const styles = {
   colors: {
     startup: "#2b3187",
   },
@@ -8,4 +8,4 @@ const constants = {
   },
 };
 
-export default constants
+export default styles

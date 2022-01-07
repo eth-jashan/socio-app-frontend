@@ -10,9 +10,9 @@ import {
 } from "react-native";
 import { Button } from "react-native-paper";
 
-import Startup from "../../Components/AuthStack/Startup";
-import constants from "../../Constants/constants";
-import StartupStyles from '../../Components/AuthStack/Styles/StartupStyles'
+import Startup from "../../Component/AuthStack/startup";
+import constants from "../../Constants/styles";
+import StartupStyles from '../../Styles/AuthStack/StartupStyles'
 
 const{width,height} = Dimensions.get('window')
 

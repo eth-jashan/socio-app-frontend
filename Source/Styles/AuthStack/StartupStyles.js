@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dimensions, StyleSheet} from 'react-native';
-import constants from '../../../Constants/constants';
+import constants from '../../Constants/styles';
 
 const {width,height} = Dimensions.get('screen');
 

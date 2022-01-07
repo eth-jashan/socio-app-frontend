@@ -4,7 +4,7 @@ import LottieView from "lottie-react-native";
 
 
 //styles
-import StartupStyles from './Styles/StartupStyles';
+import StartupStyles from '../../Styles/AuthStack/StartupStyles';
 
 const Startup = (props) => {
     
