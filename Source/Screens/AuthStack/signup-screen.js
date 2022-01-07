@@ -20,8 +20,8 @@ const{width,height} = Dimensions.get('window')
 const StartupScreen = () => {
 
   return (
-    <View style={{ backgroundColor: constants.colors.startup, flex: 1 }}>
-    </View>
+    <SafeAreaView style={{ backgroundColor: constants.colors.startup, flex: 1 }}>
+    </SafeAreaView>
   );
 };
 
