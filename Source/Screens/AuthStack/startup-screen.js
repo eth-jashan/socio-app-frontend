@@ -9,12 +9,11 @@ import {
   Dimensions,
 } from "react-native";
 import { Button } from "react-native-paper";
-
 import Startup from "../../Component/AuthStack/startup";
 import constants from "../../Constants/styles";
-import StartupStyles from '../../Styles/AuthStack/StartupStyles'
+import StartupStyles from "../../Styles/AuthStack/StartupStyles";
 
-const{width,height} = Dimensions.get('window')
+const { width, height } = Dimensions.get("window");
 
 const startupData = [
   {
@@ -37,28 +36,23 @@ const startupData = [
   },
 ];
 
-const StartupScreen = () => {
-
-  
-
-
-  const [visibleItem,setVisibleItem] = useState();
-  const [index,setIndex] = useState(0);
+const StartupScreen = (props) => {
+  const [visibleItem, setVisibleItem] = useState();
+  const [index, setIndex] = useState(0);
 
   const handleScroll = (event) => {
-  let xOffset = event.nativeEvent.contentOffset.x
-  const index = (Math.floor( xOffset/100))
-  console.log(index)
-  setIndex(index)
-}
+    let xOffset = event.nativeEvent.contentOffset.x;
+    const index = Math.floor(xOffset / 100);
+    console.log(index);
+    setIndex(index);
+  };
 
-
-  const renderItem = ({ item,index }) => {
-      return (
-        <View>
-          <Startup data={item} />
-        </View>
-      );
+  const renderItem = ({ item, index }) => {
+    return (
+      <View>
+        <Startup data={item} />
+      </View>
+    );
   };
 
   return (
@@ -74,7 +68,7 @@ const StartupScreen = () => {
         keyExtractor={(item) => item.index}
         showsHorizontalScrollIndicator={false}
       />
-      <View style={{marginBottom:40,justifyContent:'center'}}>
+      <View style={{ marginBottom: 40, justifyContent: "center" }}>
         <View style={StartupStyles.button}>
           <Text style={StartupStyles.buttonText}>Get Started</Text>
         </View>
@@ -99,7 +93,7 @@ const StartupScreen = () => {
         ></View>
         <View
           style={{
-            backgroundColor: index === 3 ? "orange" : "white",
+            backgroundColor: index === 1 ? "orange" : "white",
             borderRadius: 100,
             height: 5,
             width: 5,
@@ -108,7 +102,7 @@ const StartupScreen = () => {
         ></View>
         <View
           style={{
-            backgroundColor: index === 7 ? "orange" : "white",
+            backgroundColor: index === 2 ? "orange" : "white",
             borderRadius: 100,
             height: 5,
             width: 5,
@@ -119,6 +113,5 @@ const StartupScreen = () => {
     </View>
   );
 };
-
 
 export default StartupScreen;
