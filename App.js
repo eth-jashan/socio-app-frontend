@@ -1,6 +1,14 @@
 import AppLoading from 'expo-app-loading';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import React,{useState} from 'react'
+
+
+
+//screens
+import StartupScreen from "./Source/Screens/AuthStack/StartupScreen";
+import { fontLoading } from './Config/fonts';
+
 
 export default function App() {
 
@@ -18,12 +26,7 @@ export default function App() {
     );
   }
 
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+  return <StartupScreen />;
 }
 
 const styles = StyleSheet.create({
