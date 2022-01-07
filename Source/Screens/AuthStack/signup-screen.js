@@ -10,10 +10,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { TextInput } from "react-native-paper";
-
-import Startup from "../../Component/AuthStack/startup";
 import constants from "../../Constants/styles";
-import StartupStyles from '../../Styles/AuthStack/StartupStyles'
 import { Ionicons } from '@expo/vector-icons';
 import { useDispatch } from "react-redux";
 import { signupUser } from "../../Redux/auth/action";
@@ -85,7 +82,7 @@ const AuthScreen = () => {
     <View style={{marginVertical:12}}>
 
       <TextInput autoCapitalize={'none'} value={user.email} onChangeText={(text)=>setUser(prev=>({...prev,email:text}))} theme ={{colors:{primary:constants.colors.primary}}} mode='flat' placeholder='Your email'  style={[styles.textInput, {width:'100%'}]} />
-      {!validationEmail() && <Text style={{alignSelf:'flex-end', color:constants.colors.error}}>Enter a valid email address</Text>}
+      {(!validationEmail() && user.email.length>0)? <Text style={{alignSelf:'flex-end', color:constants.colors.error}}>Enter a valid email address</Text>:null}
 
       <View style={{flexDirection:'row', width:'100%', justifyContent:'space-between', marginTop:26}}>
         <View style={{width:'48%'}}>

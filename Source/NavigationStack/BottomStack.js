@@ -5,16 +5,14 @@ import ProfileScreen from '../Screens/HomeStack/profile-screen';
 import SearchScreen from '../Screens/HomeStack/search-screen';
 import {
   Entypo,
-  Feather,
-  MaterialIcons,
-  Ionicons,
-  FontAwesome5,
-  MaterialCommunityIcons,
   AntDesign,
   FontAwesome,
 } from "@expo/vector-icons";
+import { Avatar } from 'react-native-paper';
 
 const Tab = createMaterialBottomTabNavigator();
+
+const demoProfile = 'https://bestprofilepictures.com/wp-content/uploads/2021/04/Cool-Profile-Picture.jpg'
 
 
 const BottomStack = () => {
@@ -55,7 +53,7 @@ const BottomStack = () => {
           options={{
             tabBarLabel: "Profile",
             tabBarIcon: ({ color }) => (
-              <FontAwesome name="user" size={24} color={color} />
+              <Avatar.Image size={24} source={{uri:demoProfile}} />
             ),
           }}
         />

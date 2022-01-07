@@ -9,11 +9,11 @@ const NavigationStack = createStackNavigator()
 const AppNavigator = () => (
   <NavigationContainer>
     <NavigationStack.Navigator screenOptions={{ headerShown: false }}>
-      <NavigationStack.Screen
+      {/* <NavigationStack.Screen
         name={"authFlow"}
         component={AuthStack}
         screenOptions={{ headerShown: false }}
-      />
+      /> */}
       <NavigationStack.Screen
         name={"homeFlow"}
         component={HomeStack}
