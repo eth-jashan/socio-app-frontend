@@ -6,6 +6,52 @@ export const LOGIN_USER = "LOGIN_USER";
 export const LOGOUT_USER = "LOGOUT_USER";
 export const CHANGE_AUTH_STAUS = "CHANGE_AUTH_STAUS";
 
+export const loginUpUser = (email, password) => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await fetch(
+        `${api.LOGIN_URL.staging}${api.API_KEY.staging}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: email,
+            password: password,
+            returnSecureToken: true,
+          }),
+        }
+      );
+      try {
+        const resData = await response.json();
+        console.log("Signin sucess===>", resData);
+        try {
+          const response = await fetch(
+            `${api.BASE_URL.staging}${api.routes.user}/${resData.localId}.json?`
+          );
+          const user = await response.json();
+          let key;
+          for (key in user);
+          const userNewObj = {
+            id: key,
+            email: user[key].email,
+            password: user[key].password,
+            name: user[key].name,
+            creationDate: user[key].creationDate,
+          };
+          console.log("Profile Added !!!!!!");
+          dispatch({ type: SIGNUP_USER, user: userNewObj, uid: user.localId });
+        } catch (err) {
+          throw new Error(err);
+        }
+      } catch (err) {
+        throw new Error(err);
+      }
+    } catch (err) {
+      throw new Error(err);
+    }
+  };
+};
+
 export const signUpUser = (email, password, name) => {
   const creationDate = new Date();
   return async (dispatch, getState) => {
@@ -53,15 +99,15 @@ export const signUpUser = (email, password, name) => {
           dispatch({ type: SIGNUP_USER, user: userNewObj, uid: user.localId });
         } catch (error) {
           //handle error while signUp
-          console.log(error);
+          throw new Error(error);
         }
       } else {
         //custom Error
-        console.log("Error");
+        throw new Error("error");
       }
     } catch (err) {
       //custom error
-      console.log(err);
+      throw new Error(err);
     }
   };
 };

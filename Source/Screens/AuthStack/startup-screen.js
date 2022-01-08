@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   SafeAreaView,
   View,
@@ -10,11 +10,12 @@ import {
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Button } from "react-native-paper";
+import { useSelector } from "react-redux";
 
 import Startup from "../../Component/AuthStack/startup";
 import constants from "../../Constants/styles";
 
-const{width,height} = Dimensions.get('window')
+const { width, height } = Dimensions.get("window");
 
 const startupData = [
   {
@@ -39,26 +40,23 @@ const startupData = [
 
 const StartupScreen = (props) => {
 
-  
 
-
-  const [visibleItem,setVisibleItem] = useState();
-  const [index,setIndex] = useState(0);
+  const [visibleItem, setVisibleItem] = useState();
+  const [index, setIndex] = useState(0);
 
   const handleScroll = (event) => {
-  let xOffset = event.nativeEvent.contentOffset.x
-  const index = (Math.floor( xOffset/100))
-  console.log(index)
-  setIndex(index)
-}
+    let xOffset = event.nativeEvent.contentOffset.x;
+    const index = Math.floor(xOffset / 100);
+    console.log(index);
+    setIndex(index);
+  };
 
-
-  const renderItem = ({ item,index }) => {
-      return (
-        <View>
-          <Startup data={item} />
-        </View>
-      );
+  const renderItem = ({ item, index }) => {
+    return (
+      <View>
+        <Startup data={item} />
+      </View>
+    );
   };
 
   return (
@@ -74,7 +72,11 @@ const StartupScreen = (props) => {
         keyExtractor={(item) => item.index}
         showsHorizontalScrollIndicator={false}
       />
-      <TouchableOpacity onPress={() => { props.navigation.navigate("homeFlow");}}>
+      <TouchableOpacity
+        onPress={() => {
+          props.navigation.navigate("homeFlow");
+        }}
+      >
         <View style={{ marginBottom: 40, justifyContent: "center" }}>
           <View style={styles.button}>
             <Text style={styles.buttonText}>Get Started</Text>
