@@ -1,19 +1,19 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import AuthStack from './AuthStack';
-import HomeStack from './HomeStack';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import AuthStack from "./AuthStack";
+import HomeStack from "./HomeStack";
 
-const NavigationStack = createStackNavigator()
+const NavigationStack = createStackNavigator();
 
 const AppNavigator = () => (
   <NavigationContainer>
     <NavigationStack.Navigator screenOptions={{ headerShown: false }}>
-      {/* <NavigationStack.Screen
+      <NavigationStack.Screen
         name={"authFlow"}
         component={AuthStack}
         screenOptions={{ headerShown: false }}
-      /> */}
+      />
       <NavigationStack.Screen
         name={"homeFlow"}
         component={HomeStack}
@@ -23,4 +23,4 @@ const AppNavigator = () => (
   </NavigationContainer>
 );
 
-export default AppNavigator
+export default AppNavigator;
