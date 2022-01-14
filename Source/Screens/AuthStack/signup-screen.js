@@ -9,15 +9,15 @@ import {
   Dimensions,
   TouchableOpacity,
 } from "react-native";
-import { TextInput } from "react-native-paper";
+import { ActivityIndicator, TextInput } from "react-native-paper";
 import constants from "../../Constants/styles";
 import { Ionicons } from "@expo/vector-icons";
 import { useDispatch } from "react-redux";
-import { signUpUser } from "../../Redux/auth/action";
+import { loginUpUser, signUpUser } from "../../Redux/auth/action";
 
 const { width, height } = Dimensions.get("window");
 
-const AuthScreen = () => {
+const AuthScreen = (props) => {
   const styles = StyleSheet.create({
     header: {
       fontFamily: "bold",
@@ -40,9 +40,13 @@ const AuthScreen = () => {
     password: "",
     name: `${first} ${last}`,
   });
+  const [loginUser, setLoginUser] = useState({
+    email: "",
+    password: "",
+  });
   const [password, setPassword] = useState("");
   const [passwordErr, setPasswordErr] = useState(false);
-
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
   const validationEmail = () => {
@@ -56,8 +60,7 @@ const AuthScreen = () => {
   useEffect(() => {
     setUser((state) => {
       return {
-        email: state.email,
-        password: state.password,
+        ...state,
         name: `${first} ${last}`,
       };
     });
@@ -73,11 +76,26 @@ const AuthScreen = () => {
     }
   };
 
-  const signupAction = () => {
+  const signupAction = async () => {
     if (password === user.password && validationEmail()) {
+      setLoading(true);
       dispatch(signUpUser(user.email, user.password, user.name));
+      setLoading(false);
+      props.navigation.navigate("homeFlow");
       console.log("user", user);
     } else {
+    }
+  };
+
+  const loginAction = async () => {
+    console.log(loginUser);
+    try {
+      setLoading(true);
+      await dispatch(loginUpUser(loginUser.email, loginUser.password));
+      setLoading(false);
+      props.navigation.navigate("homeFlow");
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -165,6 +183,10 @@ const AuthScreen = () => {
   const loginForm = () => (
     <View style={{ marginVertical: 12 }}>
       <TextInput
+        value={loginUser.email}
+        onChangeText={(text) =>
+          setLoginUser((prev) => ({ ...prev, email: text }))
+        }
         theme={{ colors: { primary: constants.colors.primary } }}
         mode="flat"
         placeholder="Your email"
@@ -173,6 +195,10 @@ const AuthScreen = () => {
 
       <View>
         <TextInput
+          value={loginUser.password}
+          onChangeText={(text) =>
+            setLoginUser((prev) => ({ ...prev, password: text }))
+          }
           theme={{ colors: { primary: constants.colors.primary } }}
           placeholder="Password"
           secureTextEntry
@@ -199,6 +225,7 @@ const AuthScreen = () => {
 
   const renderSignupButton = () => (
     <TouchableOpacity
+      disabled={loading}
       style={{
         marginVertical: 12,
         backgroundColor: constants.colors.primary,
@@ -207,23 +234,34 @@ const AuthScreen = () => {
         alignSelf: "center",
         borderRadius: 60,
       }}
-      onPress={signupAction}
+      onPress={() => {
+        if (signup) {
+          console.log("singing");
+          signupAction();
+        } else {
+          loginAction();
+        }
+      }}
     >
-      <Text
-        style={{
-          fontFamily: "medium",
-          color: constants.colors.white,
-          alignSelf: "center",
-        }}
-      >
-        {signup ? "Sign up" : "Log in"}
-      </Text>
+      {loading ? (
+        <ActivityIndicator color="white" />
+      ) : (
+        <Text
+          style={{
+            fontFamily: "medium",
+            color: constants.colors.white,
+            alignSelf: "center",
+          }}
+        >
+          {signup ? "Sign up" : "Log in"}
+        </Text>
+      )}
     </TouchableOpacity>
   );
 
   const renderFormChange = () => (
     <Text style={{ fontFamily: "medium", alignSelf: "center", color: "gray" }}>
-      {signup ? "Already have a account?" : "Donont have an acount"}
+      {signup ? "Already have a account?" : "Do not have an acount"}
       <Text
         onPress={() => setSignup(!signup)}
         style={{ fontFamily: "bold", color: "black" }}
