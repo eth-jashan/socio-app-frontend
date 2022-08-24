@@ -2,7 +2,6 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import StartupScreen from "../Screens/AuthStack/startup-screen";
 import Home_screen from "../Screens/HomeStack/home-screen";
-
 const AuthScreen = createStackNavigator();
 
 const AuthStack = () => (

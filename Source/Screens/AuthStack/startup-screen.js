@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   SafeAreaView,
   View,
@@ -8,10 +8,13 @@ import {
   StatusBar,
   Dimensions,
 } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import { Button } from "react-native-paper";
+
 import Startup from "../../Component/AuthStack/startup";
 import constants from "../../Constants/styles";
 import StartupStyles from "../../Styles/AuthStack/StartupStyles";
+
 
 const { width, height } = Dimensions.get("window");
 
@@ -37,6 +40,7 @@ const startupData = [
 ];
 
 const StartupScreen = (props) => {
+
   const [visibleItem, setVisibleItem] = useState();
   const [index, setIndex] = useState(0);
 
@@ -68,11 +72,13 @@ const StartupScreen = (props) => {
         keyExtractor={(item) => item.index}
         showsHorizontalScrollIndicator={false}
       />
+
       <View style={{ marginBottom: 40, justifyContent: "center" }}>
         <View style={StartupStyles.button}>
           <Text style={StartupStyles.buttonText}>Get Started</Text>
+
         </View>
-      </View>
+      </TouchableOpacity>
 
       <View
         style={{
@@ -113,5 +119,7 @@ const StartupScreen = (props) => {
     </View>
   );
 };
+
+
 
 export default StartupScreen;
