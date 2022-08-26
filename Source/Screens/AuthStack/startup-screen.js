@@ -10,11 +10,10 @@ import {
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Button } from "react-native-paper";
+import { useSelector } from "react-redux";
 
 import Startup from "../../Component/AuthStack/startup";
 import constants from "../../Constants/styles";
-import StartupStyles from "../../Styles/AuthStack/StartupStyles";
-
 
 const { width, height } = Dimensions.get("window");
 
@@ -40,6 +39,7 @@ const startupData = [
 ];
 
 const StartupScreen = (props) => {
+
 
   const [visibleItem, setVisibleItem] = useState();
   const [index, setIndex] = useState(0);
@@ -72,11 +72,15 @@ const StartupScreen = (props) => {
         keyExtractor={(item) => item.index}
         showsHorizontalScrollIndicator={false}
       />
-
-      <View style={{ marginBottom: 40, justifyContent: "center" }}>
-        <View style={StartupStyles.button}>
-          <Text style={StartupStyles.buttonText}>Get Started</Text>
-
+      <TouchableOpacity
+        onPress={() => {
+          props.navigation.navigate("homeFlow");
+        }}
+      >
+        <View style={{ marginBottom: 40, justifyContent: "center" }}>
+          <View style={styles.button}>
+            <Text style={styles.buttonText}>Get Started</Text>
+          </View>
         </View>
       </TouchableOpacity>
 
@@ -99,7 +103,7 @@ const StartupScreen = (props) => {
         ></View>
         <View
           style={{
-            backgroundColor: index === 1 ? "orange" : "white",
+            backgroundColor: index === 3 ? "orange" : "white",
             borderRadius: 100,
             height: 5,
             width: 5,
@@ -108,7 +112,7 @@ const StartupScreen = (props) => {
         ></View>
         <View
           style={{
-            backgroundColor: index === 2 ? "orange" : "white",
+            backgroundColor: index === 7 ? "orange" : "white",
             borderRadius: 100,
             height: 5,
             width: 5,
@@ -120,6 +124,35 @@ const StartupScreen = (props) => {
   );
 };
 
-
+const styles = StyleSheet.create({
+  container: {
+    width: width,
+    backgroundColor: constants.colors.startup,
+  },
+  heading: {
+    fontSize: constants.textSize.heading,
+    marginVertical: 15,
+    paddingHorizontal: 15,
+    fontFamily: "bold",
+  },
+  button: {
+    borderRadius: 50,
+    backgroundColor: "#f05c5c",
+    padding: 10,
+    alignItems: "center",
+    width: width * 0.4,
+    justifyContent: "center",
+    marginLeft: 15,
+  },
+  buttonText: {
+    color: "white",
+    fontSize: constants.textSize.button,
+    fontFamily: "semibold",
+  },
+  lotiContainer: {
+    width: Dimensions.get("window").width,
+    height: Dimensions.get("window").height * 0.65,
+  },
+});
 
 export default StartupScreen;
