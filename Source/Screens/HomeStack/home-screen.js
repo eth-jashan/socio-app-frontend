@@ -1,4 +1,8 @@
+
+import React from "react";
+
 import React, { useEffect } from "react";
+
 import { View, Text } from "react-native";
 import { Avatar } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -14,4 +18,6 @@ const HomeScreen = () => {
   );
 };
 
-export default HomeScreen;
+
+export default Home_screen;
+

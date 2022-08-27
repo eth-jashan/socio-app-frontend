@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import {
   SafeAreaView,
   View,
@@ -8,12 +8,17 @@ import {
   StatusBar,
   Dimensions,
 } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import { Button } from "react-native-paper";
+
+import Startup from "../../Component/AuthStack/startup";
+import constants from "../../Constants/styles";
+import StartupStyles from "../../Styles/AuthStack/StartupStyles";
+
 import { useSelector } from "react-redux";
 
 import Startup from "../../Component/AuthStack/startup";
 import constants from "../../Constants/styles";
+
 
 const { width, height } = Dimensions.get("window");
 
@@ -39,7 +44,6 @@ const startupData = [
 ];
 
 const StartupScreen = (props) => {
-
 
   const [visibleItem, setVisibleItem] = useState();
   const [index, setIndex] = useState(0);
@@ -72,6 +76,11 @@ const StartupScreen = (props) => {
         keyExtractor={(item) => item.index}
         showsHorizontalScrollIndicator={false}
       />
+
+      <View style={{ marginBottom: 40, justifyContent: "center" }}>
+        <View style={StartupStyles.button}>
+          <Text style={StartupStyles.buttonText}>Get Started</Text>
+
       <TouchableOpacity
         onPress={() => {
           props.navigation.navigate("homeFlow");
@@ -81,8 +90,9 @@ const StartupScreen = (props) => {
           <View style={styles.button}>
             <Text style={styles.buttonText}>Get Started</Text>
           </View>
+
         </View>
-      </TouchableOpacity>
+      </View>
 
       <View
         style={{
@@ -124,6 +134,7 @@ const StartupScreen = (props) => {
   );
 };
 
+
 const styles = StyleSheet.create({
   container: {
     width: width,
@@ -154,5 +165,6 @@ const styles = StyleSheet.create({
     height: Dimensions.get("window").height * 0.65,
   },
 });
+
 
 export default StartupScreen;

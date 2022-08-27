@@ -1,9 +1,14 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import StartupScreen from "../Screens/AuthStack/startup-screen";
+
+import Home_screen from "../Screens/HomeStack/home-screen";
+
+
 import AuthScreen from "../Screens/AuthStack/signup-screen";
 
 const AuthFlow = createStackNavigator();
+
 
 const AuthStack = () => (
   <AuthFlow.Navigator
