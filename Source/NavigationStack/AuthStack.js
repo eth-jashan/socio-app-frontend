@@ -2,8 +2,7 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import StartupScreen from "../Screens/AuthStack/startup-screen";
 
-import Home_screen from "../Screens/HomeStack/home-screen";
-
+import HomeScreen from "../Screens/HomeStack/home-screen";
 
 import AuthScreen from "../Screens/AuthStack/signup-screen";
 
@@ -15,8 +14,8 @@ const AuthStack = () => (
     initialRouteName={"startupScreen"}
     screenOptions={{ headerShown: false }}
   >
-    {/* <AuthScreen.Screen name={"startupScreen"} component={StartupScreen} /> */}
-    <AuthFlow.Screen name={"authScreen"} component={AuthScreen} />
+    <AuthFlow.Screen name={"startupScreen"} component={StartupScreen} />
+    {/* <AuthFlow.Screen name={"authScreen"} component={AuthScreen} /> */}
   </AuthFlow.Navigator>
 );
 

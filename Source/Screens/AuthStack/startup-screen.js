@@ -15,9 +15,8 @@ import constants from "../../Constants/styles";
 import StartupStyles from "../../Styles/AuthStack/StartupStyles";
 
 import { useSelector } from "react-redux";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
-import Startup from "../../Component/AuthStack/startup";
-import constants from "../../Constants/styles";
 
 
 const { width, height } = Dimensions.get("window");
@@ -76,8 +75,9 @@ const StartupScreen = (props) => {
         keyExtractor={(item) => item.index}
         showsHorizontalScrollIndicator={false}
       />
+      
 
-      <View style={{ marginBottom: 40, justifyContent: "center" }}>
+      <View style={{ marginBottom: 40, justifyContent: "center",alignSelf:'center' }}>
         <View style={StartupStyles.button}>
           <Text style={StartupStyles.buttonText}>Get Started</Text>
 
@@ -85,13 +85,7 @@ const StartupScreen = (props) => {
         onPress={() => {
           props.navigation.navigate("homeFlow");
         }}
-      >
-        <View style={{ marginBottom: 40, justifyContent: "center" }}>
-          <View style={styles.button}>
-            <Text style={styles.buttonText}>Get Started</Text>
-          </View>
-
-        </View>
+      />
       </View>
 
       <View
@@ -130,6 +124,7 @@ const StartupScreen = (props) => {
           }}
         ></View>
       </View>
+    </View>
     </View>
   );
 };
